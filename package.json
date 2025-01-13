@@ -1,0 +1,27 @@
+{
+  "name": "template-tg-bot",
+  "version": "1.0.0",
+  "description": "Complete TS template telegram bot.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoldaN1/template-tg-bot.git"
+  },
+  "author": "KoldaN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KoldaN1/template-tg-bot/issues"
+  },
+  "homepage": "https://github.com/KoldaN1/template-tg-bot#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "node-telegram-bot-api": "^0.66.0",
+    "ts-node": "^10.9.2"
+  }
+}

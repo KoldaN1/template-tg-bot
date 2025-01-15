@@ -3,6 +3,7 @@ import "dotenv/config";
 import { logger } from "./models/logger.ts";
 import * as commands from "./commands/index.ts";
 import * as handlers from "./handlers/index.ts";
+import * as db from "./database/db.ts";
 
 const token = process.env.TG_TOKEN;
 if (!token) {
@@ -12,7 +13,7 @@ if (!token) {
 
 const bot = new TelegramBot(token, { polling: true });
 
-const initializeListeners = () => {
+const initializeListeners = async () => {
   /* Commands */
   bot.onText(/\/start$/i, commands.start(bot));
 
@@ -21,4 +22,24 @@ const initializeListeners = () => {
   bot.on("message", (msg: TelegramBot.Message) => handlers.messageHandler(bot)(msg));
 };
 
-initializeListeners();
+const main = async () => {
+  try {
+    /* Database (choose your own) */
+    db.initJsonDB();
+    // db.initMongoDB();
+    // db.initPostgresDB();
+    logger.info("DB", "Database initialized.");
+
+    /* Listeners */
+    await initializeListeners();
+    logger.info("LISTENERS", "Listeners initialized.");
+
+    /* Start bot */
+    logger.info("BOT", "Bot started.");
+  } catch (error) {
+    logger.error("MAIN", error as Error);
+    process.exit(1);
+  }
+};
+
+main();

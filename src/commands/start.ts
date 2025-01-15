@@ -8,7 +8,7 @@ const start = (bot: TelegramBot) => async (msg: TelegramBot.Message) => {
     const userId = msg.from.id;
     const languageCode = msg.from.language_code || "en";
 
-    bot.sendMessage(userId, getText(languageCode, "start", { username: msg.from.username }), {
+    return bot.sendMessage(userId, getText(languageCode, "start", { username: msg.from.username }), {
       reply_markup: {
         inline_keyboard: [[{ text: "Author", callback_data: `${userId}:author` }]],
       },

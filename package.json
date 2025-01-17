@@ -21,6 +21,7 @@
   "homepage": "https://github.com/KoldaN1/template-tg-bot#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "mongoose": "^8.9.5",
     "node-telegram-bot-api": "^0.66.0",
     "reclogger": "^1.2.2",
     "ts-node": "^10.9.2"

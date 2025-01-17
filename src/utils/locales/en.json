@@ -1,3 +1,11 @@
 {
-  "start": "Hello, {username}!"
+  "menu": "Hello, {username}!",
+  "language": "Your language at the moment - <b>{language}</b>.\n\nPlease choose your real language...",
+  "language_b": "🌐 Language",
+  "language_ru_b": "🇷🇺 Russia",
+  "language_en_b": "🇺🇸 English",
+  "author": "<b>About Author</b>\n\nDeveloper: <b><a href=\"https://github.com/KoldaN1\">reCAPTCHA</a></b>\n\nTechnologies used in this project:\n- <b>Node.js</b>\n- <b>Typescript</b>\n- <b>MongoDB</b>\n- <b>PostgreSQL</b>\n- <b>RecLogger</b>\n- <b>NODE-TELEGRAM-BOT-API</b>",
+  "author_b": "👤 Author",
+  "github_b": "✅ GitHub",
+  "menu_b": "⬅ Menu"
 }

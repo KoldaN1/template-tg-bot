@@ -4,7 +4,7 @@ import ru from "./ru.json" with { type: "json" };;
 type Params = Record<string, any>;
 type Translations = Record<string, string>;
 
-export const getText = (lang: string, key: string, params?: Params) => {
+const getText = (lang: string, key: string, params?: Params) => {
   const translations: Translations = lang === "ru" ? ru : en;
   let text = translations[key] || key;
 
@@ -16,3 +16,5 @@ export const getText = (lang: string, key: string, params?: Params) => {
 
   return text;
 };
+
+export default getText;

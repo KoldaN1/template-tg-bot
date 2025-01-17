@@ -1,6 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import { errorHandler } from "./errorHandler.ts";
 import * as callbacksQueries from "../queryCallbacks/index.ts";
+import logger from "../models/logger.ts";
 
 const callbackQueryHandler = (bot: TelegramBot) => async (query: TelegramBot.CallbackQuery) => {
   try {
@@ -11,19 +12,22 @@ const callbackQueryHandler = (bot: TelegramBot) => async (query: TelegramBot.Cal
 
     if (!userOwnButton || parseInt(userOwnButton) !== user.id) {
       return bot.answerCallbackQuery(query.id, {
-        text: "Вы не являетесь отправителем сообщения",
+        text: "You can't use this button",
         show_alert: false,
       });
     }
 
     const callback = callbacksQueries[action as keyof typeof callbacksQueries];
-    if (!callback)
+    if (!callback) {
+      logger.debug("HANDLERS/CALLBACK_QUERY", `Callback not found: ${action}`);
       return bot.answerCallbackQuery(query.id, {
         text: "WIP",
         show_alert: false,
       });
+    }
 
-    await callback(bot)(query);
+    await callback(bot)(query, user, actionArgs);
+    await bot.answerCallbackQuery(query.id);
   } catch (error) {
     errorHandler(bot, query.from.id, "HANDLERS/CALLBACK_QUERY", error as Error);
   }

@@ -1,9 +1,10 @@
 import TelegramBot from "node-telegram-bot-api";
-import { logger } from "../models/logger.ts";
+import logger from "../models/logger.ts";
 
-const errorHandler = (bot: TelegramBot, chatId: number, action: string, error: Error) => {
+const errorHandler = (bot: TelegramBot | null, chatId: number | null, action: string, error: Error, shutdown: boolean = false) => {
   logger.error(action, error);
-  bot.sendMessage(chatId, "Something went wrong, please try again later.");
+  chatId && bot && bot.sendMessage(chatId, "Something went wrong, please try again later.");
+  shutdown && process.exit(1);
 };
 
 export { errorHandler };

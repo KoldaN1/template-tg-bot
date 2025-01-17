@@ -1,6 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import "dotenv/config";
-import { logger } from "./models/logger.ts";
+import logger from "./models/logger.ts";
 import * as commands from "./commands/index.ts";
 import * as handlers from "./handlers/index.ts";
 import * as db from "./database/db.ts";
@@ -15,7 +15,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 const initializeListeners = async () => {
   /* Commands */
-  bot.onText(/\/start$/i, commands.start(bot));
+  bot.onText(/\/start|\/menu$/i, commands.start(bot));
+  bot.onText(/\/author$/i, commands.author(bot));
+  bot.onText(/\/language$/i, commands.language(bot));
 
   /* Handlers */
   bot.on("callback_query", (query: TelegramBot.CallbackQuery) => handlers.callbackQueryHandler(bot)(query));
@@ -25,9 +27,9 @@ const initializeListeners = async () => {
 const main = async () => {
   try {
     /* Database (choose your own) */
-    db.initJsonDB();
-    // db.initMongoDB();
-    // db.initPostgresDB();
+    // await db.initJsonDB();
+    await db.initMongoDB();
+    // await db.initPostgresDB();
     logger.info("DB", "Database initialized.");
 
     /* Listeners */

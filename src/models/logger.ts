@@ -1,3 +1,4 @@
+// @ts-ignore
 import RecLogger from "reclogger";
 import "dotenv/config";
 
@@ -19,4 +20,4 @@ const logger = new RecLogger({
   pattern: "[{prefix}] ({time}) ({level}) >> {action} | {text}",
 });
 
-export { logger };
+export default logger;

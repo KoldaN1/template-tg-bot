@@ -1,11 +1,16 @@
 import TelegramBot from "node-telegram-bot-api";
-import User from "../models/User.ts";
-import logger from "../models/logger.ts";
+import logger from "../models/logger.js";
+import db from "../database/db.js";
 
 export const createUserIfNotExist = async (user: TelegramBot.User) => {
   try {
-    let userDocument = await User.findOne({ tgId: user.id });
-    if (!userDocument) userDocument = await User.create({ tgId: user.id, languageCode: user.language_code || "en" });
+    let userDocument = await db.getUser(user.id);
+    if (!userDocument)
+      // @ts-ignore
+      userDocument = await db.createUser({
+        id: user.id,
+        language_code: user.language_code,
+      });
 
     return userDocument;
   } catch (error) {
@@ -16,9 +21,18 @@ export const createUserIfNotExist = async (user: TelegramBot.User) => {
 
 export const getUser = async (tgId: number) => {
   try {
-    return await User.findOne({ tgId });
+    return await db.getUser(tgId);
   } catch (error) {
     logger.error("GET_USER", error as Error);
+    return null;
+  }
+};
+
+export const updateUser = async (tgId: number, data: any) => {
+  try {
+    return await db.updateUser(tgId, data);
+  } catch (error) {
+    logger.error("UPDATE_USER", error as Error);
     return null;
   }
 };

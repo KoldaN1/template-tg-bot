@@ -1,5 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
-import logger from "../models/logger.ts";
+import logger from "../models/logger.js";
 
 const errorHandler = (bot: TelegramBot | null, chatId: number | null, action: string, error: Error, shutdown: boolean = false) => {
   logger.error(action, error);

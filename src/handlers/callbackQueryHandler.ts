@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
-import { errorHandler } from "./errorHandler.ts";
-import * as callbacksQueries from "../queryCallbacks/index.ts";
-import logger from "../models/logger.ts";
+import { errorHandler } from "./errorHandler.js";
+import * as callbacksQueries from "../queryCallbacks/index.js";
+import logger from "../models/logger.js";
 
 const callbackQueryHandler = (bot: TelegramBot) => async (query: TelegramBot.CallbackQuery) => {
   try {

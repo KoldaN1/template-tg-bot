@@ -1,5 +1,5 @@
-import getText from "../locales/i18n.ts";
-import * as handlers from "../../handlers/index.ts";
+import getText from "../locales/i18n.js";
+import * as handlers from "../../handlers/index.js";
 
 const language = (user: any) => {
   try {

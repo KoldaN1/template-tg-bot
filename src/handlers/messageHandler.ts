@@ -1,5 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
-import { errorHandler } from "./errorHandler.ts";
+import { errorHandler } from "./errorHandler.js";
 
 const messageHandler = (bot: TelegramBot) => async (msg: TelegramBot.Message) => {
   try {

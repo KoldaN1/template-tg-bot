@@ -1,8 +1,8 @@
 import TelegramBot from "node-telegram-bot-api";
-import getText from "../utils/locales/i18n.ts";
-import * as userService from "../services/userService.ts";
-import * as handlers from "../handlers/index.ts";
-import * as keyboards from "../utils/keyboards/index.ts";
+import getText from "../utils/locales/i18n.js";
+import * as userService from "../services/userService.js";
+import * as handlers from "../handlers/index.js";
+import * as keyboards from "../utils/keyboards/index.js";
 
 const language = (bot: TelegramBot) => async (msg: TelegramBot.Message) => {
   try {

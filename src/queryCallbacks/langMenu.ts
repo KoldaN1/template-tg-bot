@@ -1,9 +1,9 @@
 import TelegramBot from "node-telegram-bot-api";
-import * as handlers from "../handlers/index.ts";
-import * as userService from "../services/userService.ts";
-import getText from "../utils/locales/i18n.ts";
-import * as keyboards from "../utils/keyboards/index.ts";
-import { language } from "../commands/language.ts";
+import * as handlers from "../handlers/index.js";
+import * as userService from "../services/userService.js";
+import getText from "../utils/locales/i18n.js";
+import * as keyboards from "../utils/keyboards/index.js";
+import { language } from "../commands/language.js";
 
 const langMenu = (bot: TelegramBot) => async (query: TelegramBot.CallbackQuery, userWhoClicked: TelegramBot.User, args: string[]) => {
   try {

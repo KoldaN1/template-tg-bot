@@ -1,4 +1,4 @@
-export { author } from "./author.ts";
-export { langChoose } from "./langChoose.ts";
-export { langMenu } from "./langMenu.ts";
-export { menu } from "./menu.ts";
+export { author } from "./author.js";
+export { langChoose } from "./langChoose.js";
+export { langMenu } from "./langMenu.js";
+export { menu } from "./menu.js";

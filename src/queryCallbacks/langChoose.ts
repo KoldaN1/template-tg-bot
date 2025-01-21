@@ -1,16 +1,14 @@
 import TelegramBot from "node-telegram-bot-api";
-import * as handlers from "../handlers/index.ts";
-import * as userService from "../services/userService.ts";
-import getText from "../utils/locales/i18n.ts";
-import * as keyboards from "../utils/keyboards/index.ts";
+import * as handlers from "../handlers/index.js";
+import * as userService from "../services/userService.js";
+import getText from "../utils/locales/i18n.js";
+import * as keyboards from "../utils/keyboards/index.js";
 
 const langChoose = (bot: TelegramBot) => async (query: TelegramBot.CallbackQuery, userWhoClicked: TelegramBot.User, args: string[]) => {
   try {
+    await userService.updateUser(userWhoClicked.id, { languageCode: args[2] });
     const user = await userService.getUser(userWhoClicked.id);
     if (!user) return;
-
-    user.languageCode = args[2];
-    await user.save();
 
     const text = getText(user.languageCode, "menu", { username: userWhoClicked.username });
     return bot.editMessageText(text, {

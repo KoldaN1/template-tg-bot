@@ -1,3 +1,3 @@
-export { callbackQueryHandler } from "./callbackQueryHandler.ts";
-export { messageHandler } from "./messageHandler.ts";
-export { errorHandler } from "./errorHandler.ts";
+export { callbackQueryHandler } from "./callbackQueryHandler.js";
+export { messageHandler } from "./messageHandler.js";
+export { errorHandler } from "./errorHandler.js";
